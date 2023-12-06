@@ -15,7 +15,7 @@ class _SecretNumberGameState extends State<SecretNumberGame> {
   List<int> previousNumbers = [];
 
   _SecretNumberGameState() {
-    randomNumber = random.nextInt(100) + 1;
+    randomNumber = random.nextInt(101);
   }
 
   void verifyGuess() {
