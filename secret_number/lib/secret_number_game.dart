@@ -19,26 +19,31 @@ class _SecretNumberGameState extends State<SecretNumberGame> {
   }
 
   void verifyGuess() {
-    setState(() {
+  setState(() {
+    try {
       int userGuess = int.parse(controller.text);
       attempts++;
 
       if (userGuess == randomNumber) {
-        message = "Congratulations! You got it right in $attempts attempts.";
+        message = "Parabéns! Você acertou em $attempts tentativas.";
       } else if (userGuess < randomNumber) {
-        message = "Try a larger number.";
+        message = "Tente um número maior.";
       } else {
-        message = "Try a smaller number.";
+        message = "Tente um número menor.";
       }
 
       previousNumbers.add(userGuess);
-      controller.clear();
-    });
-  }
+    } catch (e) {
+      message = "Por favor, insira um número válido.";
+    }
+
+    controller.clear();
+  });
+}
 
   void resetGame() {
     setState(() {
-      randomNumber = random.nextInt(100) + 1;
+      randomNumber = random.nextInt(101);
       message = "Choose a number between 1 and 100.";
       attempts = 0;
       previousNumbers.clear();
